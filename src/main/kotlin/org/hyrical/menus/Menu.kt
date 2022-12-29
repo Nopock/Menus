@@ -5,7 +5,7 @@ import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
-abstract class Menu(private val title: (Player) -> String, private val size: Int, val centered: Boolean = false) {
+abstract class Menu(private val size: Int, val centered: Boolean = false) {
 
     var lastButtons = mutableMapOf<Int, Button>()
 
@@ -13,7 +13,7 @@ abstract class Menu(private val title: (Player) -> String, private val size: Int
 
     fun open(player: Player) {
         player.closeInventory()
-        val inventory = Bukkit.createInventory(null, size, if (centered) centerMenuTitle(title.invoke(player)) else title.invoke(player))
+        val inventory = Bukkit.createInventory(null, size, if (centered) centerMenuTitle(getTitle(player)) else getTitle(player))
 
         player.openInventory(inventory)
 
@@ -88,4 +88,6 @@ abstract class Menu(private val title: (Player) -> String, private val size: Int
         }
         return builder.toString() + t
     }
+
+    abstract fun getTitle(player: Player): String
 }

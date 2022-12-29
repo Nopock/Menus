@@ -16,10 +16,12 @@ class Button(
     private var taskStarted: Boolean = false
 
     companion object {
+        @JvmStatic
         fun of(itemstack: ItemStack): Button {
             return Button(item = { itemstack })
         }
 
+        @JvmStatic
         fun placeholder(material: Material): Button {
             return Button(
                 { ItemBuilder {
@@ -42,5 +44,11 @@ class Button(
             // TODO: Cancel task if player is not viewing the menu
             menu.updateItem(this, slot, player)
         }, updatingInterval, updatingInterval)
+    }
+
+    fun onClick(lambda: (Player, InventoryClickEvent) -> Unit): Button {
+        action = lambda
+
+        return this
     }
 }

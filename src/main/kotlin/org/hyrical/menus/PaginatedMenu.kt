@@ -4,7 +4,7 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import kotlin.math.roundToInt
 
-abstract class PaginatedMenu(title: (Player) -> String, val size: Int) : Menu(title, size) {
+abstract class PaginatedMenu(private val size: Int) : Menu(size) {
 
     private var currentPage = 1
     private var maxPages = 1
