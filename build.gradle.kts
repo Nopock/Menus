@@ -10,20 +10,14 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven("https://libraries.minecraft.net")
 
     maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://repo.aikar.co/content/groups/aikar/")
-    maven("https://jitpack.io")
-    maven("https://repo.lucko.me/")
-    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
 }
 
 dependencies {
-    implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
-
+    implementation("com.mojang:authlib:1.6.25")
     compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
-
-    implementation("com.github.Nopock:Store:5a04316035")
 }
 
 tasks.withType<KotlinCompile> {
