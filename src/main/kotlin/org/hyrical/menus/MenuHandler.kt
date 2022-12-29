@@ -9,6 +9,7 @@ object MenuHandler {
 
     lateinit var plugin: JavaPlugin
 
+    @JvmStatic
     fun setup(plugin: JavaPlugin) {
         Bukkit.getPluginManager().registerEvents(MenuListeners(), plugin)
     }
