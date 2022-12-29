@@ -117,7 +117,7 @@ abstract class PaginatedMenu(private val size: Int) : Menu(size) {
     }
 
     fun nextPage(player: Player) {
-        if (currentPage + 1 == maxPages)  {
+        if (currentPage == maxPages)  {
             playSound(player, MenuSound.FAIL)
             return
         }
