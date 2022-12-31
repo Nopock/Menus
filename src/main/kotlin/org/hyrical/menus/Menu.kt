@@ -5,7 +5,7 @@ import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
-abstract class Menu(private val size: Int, val centered: Boolean = false) {
+abstract class Menu(private val size: Int, val centered: Boolean = false, var isOpen: Boolean) {
 
     var lastButtons = mutableMapOf<Int, Button>()
 

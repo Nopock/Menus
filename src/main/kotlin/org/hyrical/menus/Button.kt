@@ -6,6 +6,7 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.ItemStack
+import org.bukkit.scheduler.BukkitRunnable
 
 class Button(
     var item: (Player) -> ItemStack,
@@ -40,10 +41,16 @@ class Button(
 
         taskStarted = true
 
-        val task = Bukkit.getScheduler().runTaskTimer(MenuHandler.plugin, Runnable {
-            // TODO: Cancel task if player is not viewing the menu
-            menu.updateItem(this, slot, player)
-        }, updatingInterval, updatingInterval)
+        object : BukkitRunnable() {
+            override fun run() {
+                if (!menu.isOpen) {
+                    cancel()
+                    return
+                }
+
+                menu.updateItem(this@Button, slot, player)
+            }
+        }.runTaskTimer(MenuHandler.plugin, updatingInterval, updatingInterval)
     }
 
     fun onClick(lambda: (Player, InventoryClickEvent) -> Unit): Button {

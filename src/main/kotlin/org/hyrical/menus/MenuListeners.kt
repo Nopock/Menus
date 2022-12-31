@@ -11,6 +11,7 @@ class MenuListeners : Listener {
     @EventHandler
     fun onInventoryClose(event: InventoryCloseEvent) {
         if (MenuHandler.openedMenusMap.containsKey(event.player.uniqueId)) {
+            MenuHandler.openedMenusMap[event.player.uniqueId]?.isOpen = false
             MenuHandler.openedMenusMap[event.player.uniqueId]?.onClose(event.player as Player)
             MenuHandler.openedMenusMap.remove(event.player.uniqueId)
         }
